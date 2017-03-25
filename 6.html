@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="echarts.js"></script>
+    <script src="jquery-3.2.0.js"></script>
+    <link rel="shortcut icon" href="img/mario-01.ico">
+</head>
+<body>
+	<div id="main" style="width:800px;height:600px;"></div>
+	<script type="text/javascript">
+        //初始化一个echarts对象
+        var myChart = echarts.init(document.getElementById('main'));
+        
+
+        // 指定图表的配置项和数据
+        var option = {
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        // 处理点击事件并且跳转到相应的百度搜索页面
+        myChart.on('click', function (params) {
+            window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.name));
+        });
+        
+        //设置数据option
+        myChart.setOption(option);
+
+
+    </script>
+</body>
+</html>
