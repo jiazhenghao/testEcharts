@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="echarts.js"></script>
+    <script src="jquery-3.2.0.js"></script>
+    <link rel="shortcut icon" href="img/mario-01.ico">
+</head>
+<body>
+	<div id="main" style="width:1200px;height:1000px;"></div>
+	<script type="text/javascript">
+        //初始化一个echarts对象
+        var myChart = echarts.init(document.getElementById('main'));
+        
+         
+        var option = {
+            title: {
+                text: '多雷达图'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                x: 'center',
+                data:['工单量','滞留工单量','处理时长','处理及时率']
+            },
+            radar: [
+                {
+                    indicator: [
+                        {text: '传输汇聚层', },
+                        {text: '传输接入层', },
+                        {text: 'MDU（有业务）', },
+                        {text: 'FTTH', },
+                        {text: 'LTE', }
+                    ],
+                    center: ['25%','40%'],
+                    radius: 180
+                },
+                {
+                    indicator: [
+                        {text: '传输汇聚层', max: 100},
+                        {text: '传输接入层', max: 100},
+                        {text: 'MDU（有业务）', max: 100},
+                        {text: 'FTTH', max: 100},
+                        {text: 'LTE', max: 100}
+                    ],
+                    center: ['75%','40%'],
+                    radius: 180
+                }
+            ],
+            series: [
+                {
+                    type: 'radar',
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    //itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    //itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: [
+                        {
+                            value: [1,123,92,7,323],
+                            name: '工单量'
+                        },
+                        {
+                            value: [1,50,6,4,0],
+                            name: '滞留工单量'
+                        }
+                    ]
+                },
+                {
+                    type: 'radar',
+                    radarIndex: 1,
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    data: [
+                        {
+                            value: [0.23,28.22,12.93,174.52,2.81],
+                            name: '处理时长'
+                        },
+                        {
+                            value: [100,39.84,63.04,14.29,99.38],
+                            name: '处理及时率'
+                        }
+                    ]
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

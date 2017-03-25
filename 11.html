@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="echarts.js"></script>
+    <script src="jquery-3.2.0.js"></script>
+    <link rel="shortcut icon" href="img/mario-01.ico">
+</head>
+<body>
+	<div id="main" style="width:100%;height:1000px;"></div>
+	<script type="text/javascript">
+        //初始化一个echarts对象
+        var myChart = echarts.init(document.getElementById('main'));
+        
+         
+        var option = {
+            title: {
+                text: '雷达图'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                x: 'center',
+                data:['处理时长','处理及时率']
+            },
+            radar: [
+                {
+                    indicator: [
+                        {text: '传输汇聚层', max: 74.52},
+                        {text: '传输接入层', max: 74.52},
+                        {text: 'MDU（有业务）', max: 74.52},
+                        {text: 'FTTH', max: 74.52},
+                        {text: 'LTE', max: 74.52}
+                    ],
+                    center: ['50%','50%'],
+                    radius: 180
+                },
+                {
+                    indicator: [
+                        {text: '传输汇聚层', max: 100},
+                        {text: '传输接入层', max: 100},
+                        {text: 'MDU（有业务）', max: 100},
+                        {text: 'FTTH', max: 100},
+                        {text: 'LTE', max: 100}
+                    ],
+                    center: ['50%','50%'],
+                    radius: 180
+                }
+            ],
+            series: [
+                {
+                    type: 'radar',
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    data: [
+                        {
+                            value: [0.23,28.22,12.93,74.52,2.81],
+                            name: '处理时长'
+                        }
+                    ]
+                },
+                {
+                    type: 'radar',
+                    radarIndex: 1,
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    label: {
+                        normal: {
+                            show : 'true',
+                            formatter : function(params){
+                                var relVal = "";
+                                relVal = params.value + "%";
+                                return relVal;
+                            }
+                        }
+                    },
+                    data: [
+                        {
+                            value: [100,39.84,63.04,14.29,99.38],
+                            name: '处理及时率'
+                        }
+                    ]
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
